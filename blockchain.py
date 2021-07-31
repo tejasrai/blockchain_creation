@@ -2,6 +2,7 @@ import datetime
 import hashlib
 import json
 from flask import Flask, jsonify
+from flask.json import htmlsafe_dumps
 
 #building the blockchain
 class Blockchain :
@@ -21,7 +22,19 @@ class Blockchain :
     def get_previous_block(self) : 
         #last index can be accessed by using -1 as index.
         return self.chain[-1]                   
-                     
+
+    def proof_of_work(self, previous_proof) :
+        new_proof = 1
+        check_proof = False
+        while check_proof is False :
+            hash_operation = hashlib.sha256(str(new_proof**2 - previous_proof**2).encode()).hexdigest()
+            #range from 0 to 3 index for checking four leading zeros of finding new proof.
+            if hash_operation[:4] == '0000' :
+                check_proof = True
+            else :
+                new_proof+=1
+        return new_proof            
+
 
 
 
