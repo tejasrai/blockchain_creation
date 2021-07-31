@@ -15,7 +15,8 @@ class Blockchain :
                  'timestamp' : str(datetime.datetime.now()),
                  'proof' :  proof,
                  'previous_hash' : previous_hash}
-                 
+        self.chain.append(block)
+        return block         
                      
 
 
