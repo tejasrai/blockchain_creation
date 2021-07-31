@@ -16,7 +16,11 @@ class Blockchain :
                  'proof' :  proof,
                  'previous_hash' : previous_hash}
         self.chain.append(block)
-        return block         
+        return block 
+
+    def get_previous_block(self) : 
+        #last index can be accessed by using -1 as index.
+        return self.chain[-1]                   
                      
 
 
